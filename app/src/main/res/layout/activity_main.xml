@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
+    android:padding="16dp"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginBottom="24dp"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_alignParentLeft="true"
+            android:text="SCORE"
+            android:id="@+id/ScoreText"
+            >
+
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_alignParentRight="true"
+            android:text="0"
+            android:id="@+id/Score"
+            >
+
+        </TextView>
+    </RelativeLayout>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:text="რომელი არის ცხოველი ?"
+        android:padding="8dp"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:layout_marginBottom="24dp"
+        android:id="@+id/Qstn">
+
+
+
+    </TextView>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="choice1"
+        android:id="@+id/btn_1"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:padding="8dp"
+        >
+
+    </Button>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="choice2"
+        android:padding="8dp"
+        android:id="@+id/btn_2"
+        android:layout_marginBottom="24dp"
+
+        >
+
+    </Button>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="choice3"
+        android:padding="8dp"
+        android:id="@+id/btn_3"
+        android:layout_marginBottom="24dp"
+        >
+
+    </Button>
+
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="3dp"
+        android:id="@+id/next_btn"
+        android:text="შემდეგი კითხვა"
+        ></Button>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="1dp"
+        android:id="@+id/reslt"
+        android:text="შედეგი"
+        ></Button>
+
+
+
+
+
+
+</LinearLayout>
