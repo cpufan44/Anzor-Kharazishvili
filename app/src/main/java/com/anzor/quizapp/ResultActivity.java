@@ -31,15 +31,7 @@ public class ResultActivity extends QuizActivity {
 
 
 
-     Toast.makeText(ResultActivity.this, "Your result is " + mScore, Toast.LENGTH_SHORT).show();
-
-
-
-
-
-
-
-
+     Toast.makeText(ResultActivity.this, "Your result is " + ress.getText().toString(), Toast.LENGTH_SHORT).show();
 
 
     }

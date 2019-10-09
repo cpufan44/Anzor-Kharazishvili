@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimaryDark"
-    android:padding="16dp"
+    android:padding="10dp"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -102,9 +102,53 @@
         android:text="შედეგი"
         ></Button>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:layout_marginBottom="24dp"
+        android:layout_gravity="center_horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_alignParentLeft="true"
+            android:text="Your last result is "
+            android:id="@+id/last_rslt"
+            >
 
+        </TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:layout_alignParentRight="true"
+            android:text="0"
+            android:id="@+id/last_result"
 
+            >
 
+        </TextView>
+
+        <RelativeLayout
+            android:layout_width="371dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp">
+
+            <TextView
+                android:id="@+id/not_done"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="Never Played"
+                android:textSize="20sp">
+
+            </TextView>
+
+        </RelativeLayout>
+    </RelativeLayout>
 
 
 </LinearLayout>

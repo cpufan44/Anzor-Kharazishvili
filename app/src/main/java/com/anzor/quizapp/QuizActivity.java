@@ -15,6 +15,9 @@ public class QuizActivity extends AppCompatActivity {
 
 
     protected TextView mQuestionView;
+    protected TextView mLastReslt;
+    protected TextView mLastReslttxt;
+    protected TextView mNever;
     protected Button mChoice0;
     protected Button mChoice1;
     protected Button mChoice2;
@@ -24,9 +27,12 @@ public class QuizActivity extends AppCompatActivity {
     String A;
 
 
+
     protected String mAnswer;
-    protected int mScore = 0;
+    private static String USER_RESULT = "result";
     protected int mQusetionNumber = 0;
+    protected  int mScore = -1;
+    private SharedPreferenceManager mSharedPreferenceManager;
 
 
     protected QuizLibrary mQuestionsLibrary = new QuizLibrary();
@@ -40,6 +46,7 @@ public class QuizActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
         mQuestionView = findViewById(R.id.Qstn);
         mChoice0 = findViewById(R.id.btn_1);
         mChoice1 = findViewById(R.id.btn_2);
@@ -47,6 +54,31 @@ public class QuizActivity extends AppCompatActivity {
         mScoreView = findViewById(R.id.Score);
         mNext = findViewById(R.id.next_btn);
         mResult = findViewById(R.id.reslt);
+        mLastReslt = findViewById(R.id.last_result);
+        mLastReslttxt = findViewById(R.id.last_rslt);
+        mNever = findViewById(R.id.not_done);
+
+        mSharedPreferenceManager = new SharedPreferenceManager(this);
+
+
+
+
+
+        if( mSharedPreferenceManager.read(QuizActivity.USER_RESULT) < 0) {
+
+            mLastReslt.setVisibility(View.INVISIBLE);
+            mLastReslttxt.setVisibility(View.INVISIBLE);
+
+
+
+
+        }
+        else
+        {
+            mNever.setVisibility(View.INVISIBLE);
+
+
+        }
 
 
 
@@ -58,14 +90,24 @@ public class QuizActivity extends AppCompatActivity {
         });
 
 
+
+
         UpdateQuestion();
         mChoice0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+
                 if (mChoice0.getText() == mAnswer) {
 
+
+                    if(mScore == -1)
+                    {mScore = 0;
+                    mScore++;}
+                    else
                     mScore++;
+
+
 
                     mChoice0.setBackgroundColor(getResources().getColor(R.color.green));
                     Toast.makeText(QuizActivity.this, "Correct", Toast.LENGTH_SHORT).show();
@@ -75,6 +117,9 @@ public class QuizActivity extends AppCompatActivity {
 
 
                 } else {
+                    if(mScore == -1)
+                        mScore = 0;
+
                     Toast.makeText(QuizActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
                     mChoice0.setBackgroundColor(getResources().getColor(R.color.red));
 
@@ -90,7 +135,12 @@ public class QuizActivity extends AppCompatActivity {
 
                 if (mChoice1.getText() == mAnswer) {
 
+                    if(mScore == -1)
+                    {mScore = 0;
+                        mScore++;}
+                    else
                     mScore++;
+
                     mChoice1.setBackgroundColor(getResources().getColor(R.color.green));
 
 
@@ -101,6 +151,9 @@ public class QuizActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(QuizActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
                     mChoice1.setBackgroundColor(getResources().getColor(R.color.red));
+                    if(mScore == -1)
+                        mScore = 0;
+
 
 
                 }
@@ -113,7 +166,14 @@ public class QuizActivity extends AppCompatActivity {
 
                 if (mChoice2.getText() == mAnswer) {
 
+                    if(mScore == -1)
+                    {mScore = 0;
+                    mScore++;}
+
+                    else
+
                     mScore++;
+
                     mChoice2.setBackgroundColor(getResources().getColor(R.color.green));
 
 
@@ -123,6 +183,9 @@ public class QuizActivity extends AppCompatActivity {
                 } else {
                     Toast.makeText(QuizActivity.this, "Wrong", Toast.LENGTH_SHORT).show();
                     mChoice2.setBackgroundColor(getResources().getColor(R.color.red));
+                    if(mScore == -1)
+                    mScore = 0;
+
 
 
                 }
@@ -142,6 +205,9 @@ public class QuizActivity extends AppCompatActivity {
                 String score = mScoreView.getText().toString();
 
                 intent.putExtra("score", score);
+                mSharedPreferenceManager.write(USER_RESULT, mScore);
+
+
 
 
 
@@ -168,9 +234,12 @@ public class QuizActivity extends AppCompatActivity {
         mChoice0.setText(mQuestionsLibrary.getChoice1(mQusetionNumber));
         mChoice1.setText(mQuestionsLibrary.getChoice2(mQusetionNumber));
         mChoice2.setText(mQuestionsLibrary.getChoice3(mQusetionNumber));
+
         mChoice0.setBackgroundColor(getResources().getColor(R.color.white));
         mChoice1.setBackgroundColor(getResources().getColor(R.color.white));
         mChoice2.setBackgroundColor(getResources().getColor(R.color.white));
+
+        mLastReslt.setText(String.valueOf(mSharedPreferenceManager.read(QuizActivity.USER_RESULT)));
 
 
         mAnswer = mQuestionsLibrary.getCorrectAnswer(mQusetionNumber);
@@ -188,7 +257,9 @@ public class QuizActivity extends AppCompatActivity {
 
 
 
-        mScoreView.setText("" + mScore);
+
+        mScoreView.setText("" + String.valueOf(mScore));
+
 
 
 
