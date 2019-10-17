@@ -4,13 +4,15 @@ package com.anzor.quizapp;
 import android.content.Context;
 import android.content.SharedPreferences;
 
-public class SharedPreferenceManager {
+import com.google.gson.Gson;
+
+public class StorageManager {
 
     private static final String FILE_NAME = "result";
 
     private Context mContext;
 
-    public SharedPreferenceManager(Context context) {
+    public StorageManager(Context context) {
         if (context == null) {
             throw new IllegalArgumentException("Context is empty !");
         }
@@ -19,7 +21,7 @@ public class SharedPreferenceManager {
 
     }
 
-    public void write(String key, int value) {
+    public void  write(String key, int value) {
         SharedPreferences.Editor editor = getSharedPreferences().edit();
         editor.putInt(key, value);
 
@@ -34,6 +36,9 @@ public class SharedPreferenceManager {
     }
 
     public int read(String key){
+
+
+
         return getSharedPreferences().getInt(key, 0 );
     }
 

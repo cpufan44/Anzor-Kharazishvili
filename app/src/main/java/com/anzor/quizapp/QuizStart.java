@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 public class QuizStart extends QuizActivity  {
 
     private Button mStart;
+    private Button mHistory;
     private QuizActivity A = new QuizActivity();
 
 
@@ -24,6 +25,7 @@ public class QuizStart extends QuizActivity  {
         super.onCreate(savedInstanceState);
        setContentView(R.layout.activity_first);
        mStart = findViewById(R.id.start_btn);
+       mHistory = findViewById(R.id.history_channel);
 
        mStart.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -35,9 +37,22 @@ public class QuizStart extends QuizActivity  {
            }
        });
 
+       mHistory.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Intent intent1 = new Intent(QuizStart.this, HistoryActivity.class);
+
+               startActivity(intent1);
+
+           }
+       });
+
 
 
     }
+
+
 
 
 

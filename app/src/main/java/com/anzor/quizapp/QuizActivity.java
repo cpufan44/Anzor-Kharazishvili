@@ -1,22 +1,24 @@
 package com.anzor.quizapp;
 
-import androidx.annotation.ColorInt;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+
+
+
+
 public class QuizActivity extends AppCompatActivity {
-
-
-    protected TextView mQuestionView;
-    protected TextView mLastReslt;
-    protected TextView mLastReslttxt;
     protected TextView mNever;
     protected Button mChoice0;
     protected Button mChoice1;
@@ -24,15 +26,21 @@ public class QuizActivity extends AppCompatActivity {
     protected TextView mScoreView;
     protected Button mNext;
     protected Button mResult;
+    public static ArrayList<String> mResults = new ArrayList<>();
     String A;
 
 
 
     protected String mAnswer;
+
+
+    protected TextView mQuestionView;
+    protected TextView mLastReslt;
+    protected TextView mLastReslttxt;
     private static String USER_RESULT = "result";
     protected int mQusetionNumber = 0;
     protected  int mScore = -1;
-    private SharedPreferenceManager mSharedPreferenceManager;
+    private StorageManager mSharedPreferenceManager;
 
 
     protected QuizLibrary mQuestionsLibrary = new QuizLibrary();
@@ -40,11 +48,12 @@ public class QuizActivity extends AppCompatActivity {
 
     protected int score2 = 0;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         mQuestionView = findViewById(R.id.Qstn);
@@ -58,7 +67,7 @@ public class QuizActivity extends AppCompatActivity {
         mLastReslttxt = findViewById(R.id.last_rslt);
         mNever = findViewById(R.id.not_done);
 
-        mSharedPreferenceManager = new SharedPreferenceManager(this);
+        mSharedPreferenceManager = new StorageManager(this);
 
 
 
@@ -202,17 +211,27 @@ public class QuizActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(QuizActivity.this, ResultActivity.class);
 
+
+
                 String score = mScoreView.getText().toString();
 
                 intent.putExtra("score", score);
+
+                startActivity(intent);
                 mSharedPreferenceManager.write(USER_RESULT, mScore);
 
 
 
+                Gson gson = new Gson();
+                String json = gson.toJson(mScore);
+
+                mResults.add(json);
 
 
 
-                startActivity(intent);
+
+
+
 
 
             }
@@ -234,6 +253,7 @@ public class QuizActivity extends AppCompatActivity {
         mChoice0.setText(mQuestionsLibrary.getChoice1(mQusetionNumber));
         mChoice1.setText(mQuestionsLibrary.getChoice2(mQusetionNumber));
         mChoice2.setText(mQuestionsLibrary.getChoice3(mQusetionNumber));
+
 
         mChoice0.setBackgroundColor(getResources().getColor(R.color.white));
         mChoice1.setBackgroundColor(getResources().getColor(R.color.white));
