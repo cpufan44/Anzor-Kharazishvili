@@ -15,7 +15,7 @@ public class QuizStart extends QuizActivity  {
 
     private Button mStart;
     private Button mHistory;
-    private QuizActivity A = new QuizActivity();
+
 
 
 
@@ -27,6 +27,7 @@ public class QuizStart extends QuizActivity  {
        mStart = findViewById(R.id.start_btn);
        mHistory = findViewById(R.id.history_channel);
 
+
        mStart.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
@@ -35,18 +36,19 @@ public class QuizStart extends QuizActivity  {
                startActivity(intent);
 
            }
-       });
+    });
 
-       mHistory.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
 
-               Intent intent1 = new Intent(QuizStart.this, HistoryActivity.class);
 
-               startActivity(intent1);
 
-           }
-       });
+
+}
+
+    public void showHistory(View view){
+
+        Intent intent1 = new Intent(QuizStart.this, HistoryActivity.class);
+
+        startActivity(intent1);
 
 
 

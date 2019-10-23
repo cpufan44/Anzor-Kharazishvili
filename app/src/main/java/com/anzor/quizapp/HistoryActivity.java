@@ -12,35 +12,39 @@ import android.widget.ListView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.anzor.quizapp.QuizActivity.mResults;
 
-public class HistoryActivity extends AppCompatActivity{
+public class HistoryActivity extends AppCompatActivity {
 
     private ListView mHistorylist;
 
 
-
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
-
+    @Override
+    protected void onResume() {
+        super.onResume();
         setContentView(R.layout.activity_history);
-        mHistorylist = findViewById(R.id.last_played_results);
+
+        mHistorylist =(ListView) findViewById(R.id.main_list_view);
+
+        ArrayList<String> arayyyy = new ArrayList<>();
 
 
-        ArrayAdapter mAdap = new ArrayAdapter(this, R.layout.activity_history, mResults);
+
+        ArrayAdapter mAdap = new ArrayAdapter(this, R.layout.support_simple_spinner_dropdown_item, mResults);
 
         mHistorylist.setAdapter(mAdap);
 
 
 
-
-
-
     }
-}
+
+
+        }
 

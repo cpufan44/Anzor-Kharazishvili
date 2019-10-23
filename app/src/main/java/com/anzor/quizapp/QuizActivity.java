@@ -223,7 +223,7 @@ public class QuizActivity extends AppCompatActivity {
 
 
                 Gson gson = new Gson();
-                String json = gson.toJson(mScore);
+                String json = gson.toJson(mScoreView.getText());
 
                 mResults.add(json);
 
